@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     # root "articles#index"
     root 'posts#index'
     resources :posts
+    resources :items
     get '/open-modal', to: 'pages#open_modal', as: 'open_modal'
   end
 end
