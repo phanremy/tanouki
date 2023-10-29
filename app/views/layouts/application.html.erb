@@ -31,13 +31,13 @@
   </head>
 
   <body>
-    <%= turbo_frame_tag :main do %>
+    <%#= turbo_frame_tag :main do %>
       <div class="absolute bottom-0 right-0 mr-5 z-10">
         <%= turbo_frame_tag :flash do %>
           <%= render 'shared/flash' %>
         <% end %>
       </div>
       <%= yield %>
-    <% end %>
+    <%# end %>
   </body>
 </html>

@@ -11,11 +11,15 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to items_path
+    if @item.save
+      redirect_to items_path
+    else
+      flash.now[:error] = @item.errors.full_messages
+      render_flash
+    end
   end
 
   def item_params
-    params.require(:item).permit(:description, :state)
+    params.require(:item).permit(:description, :state, :user_id)
   end
 end

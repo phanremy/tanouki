@@ -6,10 +6,22 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-_superadmin = User.create(email: 'superadmin@example.com', password: 'password', confirmed: true, admin: true)
-admin = User.create(email: 'admin@example.com', password: 'password', confirmed: true, admin: true)
-user = User.create(email: 'user@example.com', password: 'password', confirmed: true, admin: false)
-_visitor = User.create(email: 'visitor@example.com', password: 'password', confirmed: false, admin: false)
+_superadmin = User.create_with(password: 'password')
+                  .find_or_create_by(email: 'superadmin@example.com', confirmed: true, admin: true)
+admin = User.create_with(password: 'password')
+            .find_or_create_by(email: 'admin@example.com', confirmed: true, admin: true)
+user = User.create_with(password: 'password')
+           .find_or_create_by(email: 'user@example.com', confirmed: true, admin: false)
+_visitor = User.create_with(password: 'password')
+               .find_or_create_by(email: 'visitor@example.com', confirmed: false, admin: false)
 
-Post.create(title: 'User\'s first post', body: 'This is the first post of the visitor', user: user)
-Post.create(title: 'Admin\'s first post', body: 'This is the first post of the admin', user: admin)
+Post.find_or_create_by(title: 'User\'s first post', body: 'This is the first post of the visitor', user: user)
+Post.find_or_create_by(title: 'Admin\'s first post', body: 'This is the first post of the admin', user: admin)
+
+item1 = Item.find_or_create_by(description: 'admin\'s first item', state: 'new', user: admin)
+item2 = Item.find_or_create_by(description: 'user\'s first item', state: 'new', user: user)
+
+list = List.find_or_create_by(description: 'admin\'s first list', user: admin)
+
+ListItem.find_or_create_by(list: list, item: item1)
+ListItem.find_or_create_by(list: list, item: item2)
