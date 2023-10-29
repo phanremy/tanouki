@@ -3,7 +3,7 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_post, except: %i[index new create]
+  before_action :set_post, only: %i[edit show update]
   before_action :authenticate_user!, except: %i[index show]
 
   def index
