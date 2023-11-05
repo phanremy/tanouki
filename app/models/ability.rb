@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    admin_abilities if user.admin?
+    admin_abilities if user&.admin?
     user_abilities(user) if user
   end
 

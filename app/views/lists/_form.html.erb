@@ -2,6 +2,10 @@
   <%= form.hidden_field :user_id, value: current_user&.id %>
   <%= form.label :description %>
   <%= form.text_field :description %>
+  <%= form.select(:item_ids,
+                  Item.all.collect { |item| [item.description, item.id] },
+                  {},
+                  { :multiple => true }) %>
   <div class="actions">
     <%#= form.submit t('submit'), class:'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer' %>
     <%= form.submit class:'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer' %>

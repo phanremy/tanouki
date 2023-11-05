@@ -4,9 +4,9 @@
 
 <% @lists.each do |list| %>
   <div>
-    <%= link_to list.description, list_path(list) %> ||
+    <%= link_to list.description, list_path(list) %> || <%= list.items.count %> items ||
     <% if can? :manage, list %>
-      <%= link_to 'edit', edit_list_path(list) %> ||
+      <%= link_to t('edit'), edit_list_path(list) %> ||
       <%= button_to t('delete'), list_path(list), method: :delete, form: { data: { turbo_confirm: t('confirm_delete') } } %>
     <% end %>
   </div>

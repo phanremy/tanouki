@@ -4,9 +4,9 @@
 
 <% @items.each do |item| %>
   <div>
-    <%= item.description %> - <%= item.state %> ||
+    description: <%= item.description %> - state: <%= item.state %> ||
     <% if can? :manage, item %>
-      <%= link_to 'edit', edit_item_path(item) %> ||
+      <%= link_to t('edit'), edit_item_path(item) %> ||
       <%= button_to t('delete'), item_path(item), method: :delete, form: { data: { turbo_confirm: t('confirm_delete') } } %>
     <% end %>
   </div>

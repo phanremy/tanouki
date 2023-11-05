@@ -1,2 +1,8 @@
 <%= @list.description %>
 <%= link_to 'edit', edit_list_path(@list) %>
+<% @list.items.each do |item| %>
+  <div>
+    <%= item.description %>
+    <%= item.state %>
+  </div>
+<% end %>
