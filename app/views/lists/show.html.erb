@@ -1,8 +1,8 @@
-<%= @list.description %>
-<%= link_to 'edit', edit_list_path(@list) %>
-<% @list.items.each do |item| %>
-  <div>
-    <%= item.description %>
-    <%= item.state %>
-  </div>
-<% end %>
+<%= @list.description %> | <%= link_to t('edit'), edit_list_path(@list) %>
+<div class="py-2">
+  <% @list.items.each do |item| %>
+    <div class="flex">
+      <%= render 'items/description', item: item %>
+    </div>
+  <% end %>
+</div>
